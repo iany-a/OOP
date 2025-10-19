@@ -1,0 +1,26 @@
+pointers
+
+**assignments**
+for all assignments on online we will see a deadline + extra 24h
+
+pointer example:
+int* grades = nullptr; //pointer; always initialized with nullptr
+//we don't use NULL (C)
+
+
+Call Stack
+
+start with main at bottom, continue with functions
+error thrown > call stack > double click bolded text to show the line where the error is thrown
+NULL Pointer exception thrown = forgot to allocate memory
+
+0xcdcdcdcd => uninitialized value in heap
+0xcccccccc => local variable not initialized
+
+https://cppinstitute.org/cpa
+
+
+9 or 10 at the exam >>> diploma for cpp institute.
+**bonus project - projects specifications
+https://docs.google.com/document/d/e/2PACX-1vQaF9Q5VI7YE0jsnyanLj4N28AEtxzsGcM1vDH66xe6pOOIx-Fgj_C1FsTN4_A0rOkdBjkoyA4-Khg2/pub
+

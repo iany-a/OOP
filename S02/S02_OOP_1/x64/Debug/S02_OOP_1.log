@@ -1,0 +1,4 @@
+﻿  S02_OOP_1.cpp
+D:\ASE\Y3+\OOP\S02\S02_OOP_1\S02_OOP_1.cpp(28,16): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\ASE\Y3+\OOP\S02\S02_OOP_1\S02_OOP_1.cpp(56,20): warning C4018: '<': signed/unsigned mismatch
+  S02_OOP_1.vcxproj -> D:\ASE\Y3+\OOP\S02\S02_OOP_1\x64\Debug\S02_OOP_1.exe

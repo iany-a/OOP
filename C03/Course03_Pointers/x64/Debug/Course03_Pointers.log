@@ -1,0 +1,3 @@
+﻿  Source.cpp
+D:\ASE\Y3+\OOP\C03\Course03_Pointers\Source.cpp(13,6): warning C4101: 'temp': unreferenced local variable
+  Course03_Pointers.vcxproj -> D:\ASE\Y3+\OOP\C03\Course03_Pointers\x64\Debug\Course03_Pointers.exe
