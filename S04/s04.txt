@@ -1,0 +1,8 @@
+split in 3 files
+models: student / professor model
+view - classes that show something to the user / console functions: print a message, print an array, etc
+controller - business layer (logic behind classes relations)
+//do i want to change the value of the parameter? yes = * or &
+
+EXTRA MEETING IN 2 WEEKS
++assignment (slack for q&a)
