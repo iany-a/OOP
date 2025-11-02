@@ -18,7 +18,7 @@ public:
     // Default constructor
     Book() {
         this->title = "";//init title with ""
-        strcpy(this->author, "No author");//init author with "No author"
+        strcpy_s(this->author, "No author");//init author with "No author"
         this->year = 0;//init year with 0
         this->reviews = nullptr;//init reviews with null pointer
         this->reviewCount = 0;//init reviews count with 0
@@ -48,7 +48,7 @@ public:
     char* getAuthor() {
         char* copyPointer = nullptr;
         copyPointer = new char[strlen(this->author) + 1];
-		strcpy(copyPointer, this->author);
+		strcpy_s(copyPointer, strlen(this->author), this->author);
 		return copyPointer;
     }
 
@@ -59,7 +59,7 @@ public:
 
     // Returns a copy of the reviews array
     float* getReviews() {
-        
+        return nullptr;
     }
 
     int getNoReviews() {
@@ -99,7 +99,7 @@ public:
 
     // Display book details
     void display() {
-
+        
     }
 
     // Average value of all reviews
