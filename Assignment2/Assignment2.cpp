@@ -28,7 +28,11 @@ public:
     // Init Book attributes with received values. 
     // Init reviews and reviewCount with null pointer and 0
     Book(const std::string& title, const std::string& author, int year) {
-       
+        setTitle(title);
+		setAuthor(author.c_str());
+		setYear(year);
+		this->reviews = nullptr;
+        this->reviewCount = 0;
     }
 
     // Parameterized constructor
@@ -49,16 +53,17 @@ public:
     }
 
     int getYear() {
-        return this->year;
+		int copyYear = this->year;
+        return copyYear;
     }
 
     // Returns a copy of the reviews array
     float* getReviews() {
-        return nullptr;
+        
     }
 
     int getNoReviews() {
-        return 0;
+		return this->reviewCount;
     }
 
     // Setter methods
@@ -77,7 +82,7 @@ public:
     }
     void setYear(int year) {
 		if (year / 1 != year) throw "Year must be an integer value.";
-        if (year > 2024) throw "Invalid year.";
+        if (year > 2025) throw "Invalid year.";
 		this->year = year;
     }
 
@@ -94,6 +99,7 @@ public:
 
     // Display book details
     void display() {
+
     }
 
     // Average value of all reviews
@@ -114,5 +120,6 @@ public:
 
 
 int main(){
-	return 0;
+    Book a("test", "j kenny", 1935);
+
 }
