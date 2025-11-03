@@ -19,6 +19,28 @@ class University {
 	string name = "";
 
 public:
+
+	//constructors
+	//default
+	University() {
+		cout << endl << "Default constructor called.";
+	}
+	
+	//parameter constructor
+	University(string name, UniversityType type, int noStudents, string* faculties, int noFaculties) {
+		cout << endl << "Parameter constructor called";
+		setName(name);
+		this->noStudents = noStudents;
+		this->type = type;
+		this->setFaculties(faculties, noFaculties);
+	}
+
+	//param constructor with fewer params
+	University(string name, UniversityType type) {
+		setName(name);
+		this->type = type;
+	}
+
 	void setFaculties(string* values, int noValues) {
 		//DEEP COPY
 		this->faculties = new string[noValues];
@@ -45,6 +67,7 @@ public:
 	}
 
 	void displayUniversityDetails() {
+		cout << endl << "____________________________________________";
 		cout << endl << "University name: " << this->name;
 		cout << endl << "No students: " << this->noStudents;
 		switch (this->type) {
@@ -86,7 +109,9 @@ int main() {
 	university.setFaculties(faculties, 3);
 	university.displayUniversityDetails();
 
+	University upb("UPB", UniversityType::STATE, 10000, faculties, 3);
+	upb.displayUniversityDetails();
 
-
-
+	University ub("UB", UniversityType::STATE);
+	ub.displayUniversityDetails();
 }
