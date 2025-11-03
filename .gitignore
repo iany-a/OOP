@@ -428,5 +428,5 @@ FodyWeavers.xsd
 *.msp
 
 #personal files
-/Assignment1
-Assignment2/
+/Assignment1/
+/Assignment2/
