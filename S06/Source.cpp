@@ -92,7 +92,28 @@ public:
 			cout << " " << this->faculties[i];
 		}
 	}
+	
+	//enum setter does not need any validation
+	void setType(UniversityType type) {
+		this->type = type;
+	}
 
+	UniversityType getType() {
+		return this->type;
+	}
+
+	string getTypeAsString() {
+		switch (this->type) {
+		case UniversityType::STATE:
+			return "STATE";
+		case UniversityType::PRIVATE:
+			return "PRIVATE";
+		case UniversityType::FOREIGN:
+			return "FOREIGN";
+		default:
+			return "N/A";
+		}
+	}
 };
 
 int main() {
@@ -113,5 +134,8 @@ int main() {
 	upb.displayUniversityDetails();
 
 	University ub("UB", UniversityType::STATE);
+	ub.setType(UniversityType::FOREIGN);
 	ub.displayUniversityDetails();
+	cout<<endl<<"UB Type as string:"<< ub.getTypeAsString();
+
 }
