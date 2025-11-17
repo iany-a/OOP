@@ -12,3 +12,8 @@ file stream, inheritance, is a, has a, virtual methods, abstract classes for >5 
 
 17 nov week - extra meeting for exam prep
 
+>=5 in exam and overall 4.5
+class + dynamic field + copy constructor, no shallow copy, static fields, destructor, operator
+
+
+//extra meeting on 26-27 next week
