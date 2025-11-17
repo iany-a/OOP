@@ -1,4 +1,14 @@
-nov 10 1st lab test
+nov 10 1st lab test - done
 dec 8 lab test
 Jan 22-23 exam
+
+1st of dec free day but we do OOP online on zoom
+
+
+for 2nd test: about 30% more: all of test 1 + destructor, copy constructor and overloading operators
+course08 covers overloading operators for the test
+
+file stream, inheritance, is a, has a, virtual methods, abstract classes for >5 at exam
+
+17 nov week - extra meeting for exam prep
 
