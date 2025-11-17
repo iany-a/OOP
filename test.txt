@@ -17,3 +17,4 @@ class + dynamic field + copy constructor, no shallow copy, static fields, destru
 
 
 //extra meeting on 26-27 next week
+
