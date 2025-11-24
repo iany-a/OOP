@@ -26,8 +26,9 @@ class + dynamic field + copy constructor, no shallow copy, static fields, destru
 //next week course
 
 Option B = this week (rescheduled) course on files - YES
-next week - extra meeting DEC 3 from 7 PM Wednesday
-DEC 1 course this week = Thursday NOV 27 at 16:30 - FILES COURSE
+next week - extra meeting DEC 3 from 7 PM Wednesday Zoom
+DEC 1 course (not happening) this week = rescheduled for Thursday NOV 27 at 16:30 - FILES COURSE
+DEC 8 TEST 2 group 1070
 
 
 
