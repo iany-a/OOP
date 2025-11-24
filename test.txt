@@ -17,4 +17,21 @@ class + dynamic field + copy constructor, no shallow copy, static fields, destru
 
 
 //extra meeting on 26-27 next week
+//extra meeting Thursday 4th Dec at 4:00 PM
+
+//after operators: files, inheritance, STL(?)
+
+//reschedule December 1st course during the weekdays on zoom
+//this week second extra meeting Q&A - Wednesday or Thursday(till 6PM) on zoom
+//next week course
+
+Option B = this week (rescheduled) course on files - YES
+next week - extra meeting DEC 3 from 7 PM Wednesday
+DEC 1 course this week = Thursday NOV 27 at 16:30 - FILES COURSE
+
+
+
+
+
+
 
