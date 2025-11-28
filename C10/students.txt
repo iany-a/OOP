@@ -1,0 +1,4 @@
+		 Students Data Report
+	 Current date: Nov 27, 2025
+Name: John
+Age: 22Grades: 10100
