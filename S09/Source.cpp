@@ -40,7 +40,7 @@ public:
 		}
 		//in = you can't copy the const attributes
 		this->price = v2.price;
-		delete[] this->description; //operator= alwayscreates memory leaks for dynamic fields.
+		delete[] this->description; //operator= always creates memory leaks for dynamic fields.
 		if (v2.description == nullptr) {
 			this->description = nullptr;
 		}
