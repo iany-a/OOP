@@ -11,6 +11,9 @@ using namespace std;
 //magic number or do something like hasScolarship
 //low probability for ID
 
+//rule of 3
+//
+
 class Util {
 public:
 	static int* copyArray(int* values, int noValues) {
@@ -89,7 +92,18 @@ public:
 //	int getMaxAge() {
 //		return Student::MAX_AGE;
 //	}
+	//post version
+	Student operator++(int) {
+		Student result = *this; //first assign the initial value
+		this->age += 1; //increment it
+		return result; //return the initial value, not the incremented one
+	}
 
+	//pre version
+	Student operator++() {
+		this->age += 1; //increment the value
+		return *this; //return the incremented value
+	}
 
 };
 
@@ -97,6 +111,9 @@ int const Student::MIN_AGE = 10;
 int const Student::MAX_AGE = 100;
 int Student::STUDENTS_WITH_SCOLARSHIP = 0; //used for the counter at object creation / deletion
 int Student::ID_COUNTER = 0;
+
+
+
 
 
 int main() {
