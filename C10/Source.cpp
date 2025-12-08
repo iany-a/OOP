@@ -51,6 +51,57 @@ public:
 		}
 	}
 
+	//write the student info into a binary file
+
+	void writeToBinary(ofstream& file) {
+		//Don't write addresses in binary files
+		//file.write((char*)this, sizeof(Student)); 	//wrong approach
+		//write age as value
+		file.write((char*)&this->age, sizeof(int));
+		//write name + ending \0 as value
+		//write the size of the name for input reading (the opposite)
+		int nameSize = strlen(this->name) + 1; //+1 is optional in both these lines
+		file.write((char*)&nameSize, sizeof(int));
+		file.write(this->name, sizeof(char) * strlen(this->name) +1);
+		//write grades
+		//start with their number
+		file.write((char*)&this->noGrades, sizeof(int));
+		for (int i = 0; i < this->noGrades; i++) {
+			file.write((char*)&this->grades[i], sizeof(int));
+		}
+		
+
+	
+	}
+
+	void readFromBinary(ifstream& file) {
+		file.read((char*)this->age, sizeof(int));
+		delete[] this->name;
+		this->name = new char[nameSize];
+		file.read(this->name, nameSize);
+
+		delete[] this->grades;
+		file.read((char*)&this->noGrades, sizeof(int));
+		this->grades = new int[this->noGrades];
+		for (int i = 0; i < this->noGrades; i++) {
+			file.read((char*)&this->grades[i], sizeof(int));
+		}
+
+	}
+
+	void print() {
+		cout << endl << "Name: " << this->name;
+		cout << endl << "Age: " << this->age;
+		if (this->noGrades > 0) {
+			cout << endl << "Grades: ";
+			for (int i = 0; i < this->noGrades; i++) {
+				cout << this->grades[i] << ", ";
+			}
+		}
+	}
+
+
+
 	friend void operator>>(ifstream& file, Student& stud);
 	friend void operator<<(ofstream& file, Student& stud);
 };
@@ -70,7 +121,6 @@ void operator<<(ofstream& file, Student& stud) {
 }
 
 void operator>>(ifstream& file, Student& stud) {
-	char buffer[1000];
 	char buffer[1000];
 	file >> buffer;
 
@@ -95,18 +145,63 @@ void operator>>(ifstream& file, Student& stud) {
 	for (int i = 0; i < noGrades; i++) {
 		file >> stud.grades[i];
 	}
+
+	
+
 }
 
 
+
+
 int main() {
-	//reading from console
-	int vb;
-	string text;
-	string text2;
-	string text3;
+	//binary files
+	ofstream dataFile("backup.bin", ios::binary | ios::ate); //don't mix with ||
 
 	int grades[3] = { 10, 10, 9 };
 	Student john("John", 22, grades, 3);
+
+	int vb = 23;
+	//Don't use << for binary files, this is only used for strings.
+	//dataFile << vb;
+
+	//2 parameters
+	// -first is the pointer to the data to be written, which is cased as a char pointer;
+	// -second is the size
+	//.write((char*)&vb, sizeof(int));
+
+	john.writeToBinary(dataFile);
+	dataFile.close();
+	
+	Student temp("", 0, grades, 3);
+	ifstream inputData("backup.bin", ios::binary);
+	temp.readFromBinary(inputData);
+	inputData.close();
+	temp.print();
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+	
+
+
+	////reading from console
+	//int vb;
+	//string text;
+	//string text2;
+	//string text3;
+
+	//int grades[3] = { 10, 10, 9 };
+	//Student john("John", 22, grades, 3);
 
 
 	//cout << endl << "Give me a number: ";
@@ -135,87 +230,87 @@ int main() {
 	//they share the same "bug" as cin
 	//in C you were using the file structure FILE* pf
 	//C++: 3 new libraries: fstream
-	fstream file; //generic class for reading and writing to files
-	//recommendation to not use ofstream instead
-	ofstream fileForWriting; //class for opening files in write mode
-	ifstream fileForReading; //class for opening files in read mode
+	//fstream file; //generic class for reading and writing to files
+	////recommendation to not use ofstream instead
+	//ofstream fileForWriting; //class for opening files in write mode
+	//ifstream fileForReading; //class for opening files in read mode
 
-	//create report to store students data
-	//by default all files are considered text
-	ofstream report("students.txt", ios::ate); //source, bitmasks(rights) - this opens a file in truncate mode for writing
-	//if the file does not exist, it will create it
-	//if the file exist and you open it in truncate mode, it will be deleted and recreated
-	//if the file exist and you open it in append mode, it will add to the existing file
-	if (report.is_open()) {
-		//write into the text file
-		report << "\t\t Students Data Report" << endl;
-		report << "\t Current date: Nov 27, 2025" << endl;
+	////create report to store students data
+	////by default all files are considered text
+	//ofstream report("students.txt", ios::ate); //source, bitmasks(rights) - this opens a file in truncate mode for writing
+	////if the file does not exist, it will create it
+	////if the file exist and you open it in truncate mode, it will be deleted and recreated
+	////if the file exist and you open it in append mode, it will add to the existing file
+	//if (report.is_open()) {
+	//	//write into the text file
+	//	report << "\t\t Students Data Report" << endl;
+	//	report << "\t Current date: Nov 27, 2025" << endl;
 
-		//report << john;
-		john.writeToTextFile(report);
-	}
-	else {
-		cout << endl << "****ERROR: File not created.****";
-	}
+	//	//report << john;
+	//	john.writeToTextFile(report);
+	//}
+	//else {
+	//	cout << endl << "****ERROR: File not created.****";
+	//}
 
-	//important: don't forget to close the file when you are done
-	report.close();
+	////important: don't forget to close the file when you are done
+	//report.close();
 
-	//read from text files
-	//some issues
-	//create the text file in standard format that is easy to read
-	//other formats: csv, JSON, XML, 
-	//SIMPLE FORMAT
-	//1.each line has a single value
-	//2.before multiple lines that store multiple values (array) put a line with their number
-	ifstream inputFile("backup.txt"); //no ios:: for reading txt file
-	if (inputFile.is_open()) {
-		//use the file pattern
-		string name;
-		char buffer[100];
-		//inputFile >> name; //stop on space
-		inputFile.getline(buffer, 99);
-		cout << endl << "Name from file: " << buffer;
-		int age;
-		inputFile >> age;
-		cout << endl << "Age from file: " << age;
-		int noGrades;
-		inputFile >> noGrades;
-		cout << endl << "No of grades from file: " << noGrades;
-		for (int i = 0; i < noGrades; i++) {
-			int grade;
-			inputFile >> grade;
-			cout << endl << "Grade from file: " << grade;
-		}
-	}
-	else {
-		cout << endl << "****ERROR: File not created.****";
-	}
+	////read from text files
+	////some issues
+	////create the text file in standard format that is easy to read
+	////other formats: csv, JSON, XML, 
+	////SIMPLE FORMAT
+	////1.each line has a single value
+	////2.before multiple lines that store multiple values (array) put a line with their number
+	//ifstream inputFile("backup.txt"); //no ios:: for reading txt file
+	//if (inputFile.is_open()) {
+	//	//use the file pattern
+	//	string name;
+	//	char buffer[100];
+	//	//inputFile >> name; //stop on space
+	//	inputFile.getline(buffer, 99);
+	//	cout << endl << "Name from file: " << buffer;
+	//	int age;
+	//	inputFile >> age;
+	//	cout << endl << "Age from file: " << age;
+	//	int noGrades;
+	//	inputFile >> noGrades;
+	//	cout << endl << "No of grades from file: " << noGrades;
+	//	for (int i = 0; i < noGrades; i++) {
+	//		int grade;
+	//		inputFile >> grade;
+	//		cout << endl << "Grade from file: " << grade;
+	//	}
+	//}
+	//else {
+	//	cout << endl << "****ERROR: File not created.****";
+	//}
 
-	
-	ifstream backup("backup.txt");
-	if (backup.is_open()) {
-		backup >> john;
-	}
-	backup.close();
+	//
+	//ifstream backup("backup.txt");
+	//if (backup.is_open()) {
+	//	backup >> john;
+	//}
+	//backup.close();
 
 
-	ofstream report2("john.txt");
-	report2 << john;
-	report2.close();
+	//ofstream report2("john.txt");
+	//report2 << john;
+	//report2.close();
 
-	//binary files
-	//343455465 - as text 9 bytes
-	//			- as binary 4 bytes
-	ofstream binaryFile("students.bin", ios::binary | ios::ate);
-	if (binaryFile.is_open()) {
-		//write into binary files
-		//NEVER use << - that's only used in strings
-		//binaryFile << vb;
-		//little endian starts with least important bits
-		//binaryFile.write((char*)&vb, sizeof(int)); 
-	}
-	binaryFile.close();
+	////binary files
+	////343455465 - as text 9 bytes
+	////			- as binary 4 bytes
+	//ofstream binaryFile("students.bin", ios::binary | ios::ate);
+	//if (binaryFile.is_open()) {
+	//	//write into binary files
+	//	//NEVER use << - that's only used in strings
+	//	//binaryFile << vb;
+	//	//little endian starts with least important bits
+	//	//binaryFile.write((char*)&vb, sizeof(int)); 
+	//}
+	//binaryFile.close();
 
 
 
