@@ -38,6 +38,6 @@ Next week - quiz with 50 questions on platform - Monday till Thursday. can take 
 
 12 jan 2026 - last seminar quiz 15% at the Seminar, last 30-40 minutes
 
-
+at exam need to comment out / not use default constructor .... ok
 
 
