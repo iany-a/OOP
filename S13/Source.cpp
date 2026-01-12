@@ -27,7 +27,7 @@ public:
 class ElectricVehicle: public Vehicle {
 	float batteryCapacity = 0;
 public:
-	//override = has same header with the same parameters (if any). 
+	//parent class method override = has the same header with the same parameters (if any). 
 	//If you modify the parameters list, it's called overloading (just like for operators).
 	void getDescription() {
 		cout << endl << "It's an electric vehicle";
