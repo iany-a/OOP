@@ -18,7 +18,7 @@ class Vehicle {
 	float km = 0;
 
 public:
-	virtual void getDescription() {
+	virtual void getDescription() { //late binding by using "virtual" -> gives a new set of instructions to the compiler.
 		cout << endl << "It's a vehicle";
 	}
 
@@ -27,7 +27,7 @@ public:
 class ElectricVehicle: public Vehicle {
 	float batteryCapacity = 0;
 public:
-	//parent class method override = has the same header with the same parameters (if any). 
+	//parent class method override = has the same header with the same parameters (if any).
 	//If you modify the parameters list, it's called overloading (just like for operators).
 	void getDescription() {
 		cout << endl << "It's an electric vehicle";
@@ -65,7 +65,7 @@ int main() {
 	//this will only copy the parent class attributes and methods in the array objects. Everything else defined in the child classes is lost.
 
 	Vehicle* vehiclesPtr[3]; //array of pointers to objects
-	vehiclesPtr[0] = &v; //copy only the address
+	vehiclesPtr[0] = &v; //copy only the address - early binding
 	vehiclesPtr[1] = &ev; //copy only the address
 	vehiclesPtr[2] = &icv; //copy only the address
 
