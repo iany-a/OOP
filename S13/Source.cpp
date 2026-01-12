@@ -18,7 +18,7 @@ class Vehicle {
 	float km = 0;
 
 public:
-	void getDescription() {
+	virtual void getDescription() {
 		cout << endl << "It's a vehicle";
 	}
 
@@ -27,11 +27,20 @@ public:
 class ElectricVehicle: public Vehicle {
 	float batteryCapacity = 0;
 public:
+	//override = has same header with the same parameters (if any). 
+	//If you modify the parameters list, it's called overloading (just like for operators).
+	void getDescription() {
+		cout << endl << "It's an electric vehicle";
+	}
 };
 
 class InternalCombustionVehicle: public Vehicle {
 	int engineCapacity = 0;
 	float litersPerKm = 0.0f;
+public:
+	void getDescription() {
+		cout << endl << "It's an internal combustion vehicle";
+	}
 };
 
 
@@ -60,9 +69,12 @@ int main() {
 	vehiclesPtr[1] = &ev; //copy only the address
 	vehiclesPtr[2] = &icv; //copy only the address
 
-	//in C#, JAVA, PYTHON, all declarations are pointers without the special annotation.
+	//**********in C#, JAVA, PYTHON, all declarations are pointers without the special annotation.
 
-	
+	cout << endl << "_________________________________________________";
+	for (int i = 0; i < 3; i++) {
+		vehiclesPtr[i]->getDescription();
+	}
 	
 
 
