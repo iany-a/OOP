@@ -35,6 +35,7 @@ public:
 			sum+= areProfitable[i]; 
 		}
 		float checkShare = (sum / noShares) * 100;
+		cout <<endl<< checkShare;
 		if (checkShare < BREAKING_POINT_VALUE) throw "Shares not profitable.";
 
 		for (int i = 0; i < noShares; i++) {
@@ -88,8 +89,7 @@ public:
 	}
 
 	StockBroker operator+(bool share) {
-		if (share = 1) cout << "DEBUG TEST CASE 1";
-		else cout << "DEBUG TEST CASE 2";
+		if (share != 1 && share != 0) throw "Invalid input.";
 		StockBroker newObj = *this;
 		float sum = 0.0f;
 		for (int i = 0; i < this->noShares; i++) {
@@ -131,10 +131,10 @@ int StockBroker::BREAKING_POINT_VALUE = 65;
 
 
 int main() {
-	bool shares[5] = { 1, 1, 1, 0, 1 };
+	bool shares[6] = { 1, 1, 0, 1, 1, 0};
 
 
-	StockBroker a("Test A", 5, shares, ExchangeType::NASDAW);
+	StockBroker a("Test A", 6, shares, ExchangeType::NASDAW);
 
 	a.display();
 
@@ -143,7 +143,7 @@ int main() {
 	b.display();
 //	b->~StockBroker();
 
-	StockBroker* c = new StockBroker("Test C", 5, shares, ExchangeType::TSE);
+	StockBroker* c = new StockBroker("Test C", 6, shares, ExchangeType::TSE);
 	delete c;
 	c = nullptr;
 	cout << endl;
