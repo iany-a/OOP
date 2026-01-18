@@ -155,8 +155,4 @@ int main() {
 	d.setName("Test D");
 	d.display();
 
-	
-
-
-
 }
