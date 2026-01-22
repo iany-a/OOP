@@ -192,6 +192,9 @@ public:
     explicit operator string() {
         return this->title;
     }
+    explicit operator int() {
+        return this->authorCount;
+    }
  
     friend Book operator+(int pages, Book book);
     friend ostream& operator<<(ostream& os, const Book& book);
@@ -287,9 +290,12 @@ int main() {
     cout << b1;
 
     //Input a new book
-    Book b4;
-    cin >> b4;
-    cout <<endl<< "You entered:\n" << b4;
+    //Book b4;
+    //cin >> b4;
+    //cout <<endl<< "You entered:\n" << b4;
+
+    int testInt = int(a);
+    cout << endl << testInt;
 
 }
 
